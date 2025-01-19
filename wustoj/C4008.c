@@ -1,0 +1,40 @@
+#include <stdio.h>
+
+void swap(int *a,int *b);
+void sort(int *p,int n);
+int main()
+{
+    int s[3];
+    scanf("%d %d %d",&s[0],&s[1],&s[2]);
+    sort(s,3);
+    if(s[0] + s[1] > s[2])
+    {
+        printf("YES\n");
+    }
+    else
+    {
+        printf("NO\n");
+    }
+}
+
+void swap(int *a,int *b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+void sort(int *p,int n)
+{
+    for(int i = 0;i < n;i ++)
+    {
+        for(int j = 1;j < n - i;j ++)
+        {
+            if(*(p + i) > *(p + i + j))
+            {
+                swap((p + i),(p + i + j));
+            }
+        }
+    }
+}
