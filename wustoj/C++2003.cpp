@@ -11,13 +11,13 @@ class Complex {
             re = res;
             im = ims;
         }
-        friend ostream& operator<<(ostream &os, Complex complex);
+        friend ostream& operator<<(ostream &os, Complex& complex);
         friend Complex operator+(Complex& c_1, Complex& c_2);
         friend Complex operator-(Complex& c_1, Complex& c_2);
         friend Complex operator*(Complex& c_1, Complex& c_2);
 };
 
-ostream& operator<<(ostream &os, Complex complex) {
+ostream& operator<<(ostream &os, Complex& complex) {
     if(complex.re == 0) {
         if(complex.im == 0) {
             os << 0;
