@@ -3,7 +3,7 @@
 
 void swap(int *p,int *q);
 void sort(int *p,int lenth);
-int max(int *p,int lenth);
+// int max(int *p,int lenth);
 int recur_max(int *p,int lenth,int top);
 int recur_sort(int *p,int lenth,int top);
 int binary(int *p,int lenth,int num);
@@ -54,14 +54,14 @@ int recur_sort(int *p,int lenth,int top){
     }
 }
 
-int max(int *p,int lenth){
-    int temp = p[0];
-    for(int i = 0;i < lenth;i ++){
-        if(temp < p[i])
-            temp = p[i];
-    }
-    return temp;
-}
+// int max(int *p, int lenth) {
+//     int temp = p[0];
+//     for(int i = 0;i < lenth;i ++){
+//         if(temp < p[i])
+//             temp = p[i];
+//     }
+//     return temp;
+// }
 
 int recur_max(int *p,int lenth,int top){
     return top == lenth - 1 ? p[top] : p[top] > recur_max(p,lenth,top + 1) ? p[top] : recur_max(p,lenth,top + 1);

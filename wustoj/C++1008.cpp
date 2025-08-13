@@ -12,7 +12,7 @@ class Line {
             lenth = sqrt((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
         }
         void Show() {
-            cout << '(' << x1 << ',' << y1 << ')' << "--" << '(' << x2 << ',' << y2 << ')' << "lenth=" << lenth << endl;
+            cout << '(' << x1 << ',' << y1 << ')' << "--" << '(' << x2 << ',' << y2 << ')' << "length=" << lenth << endl;
         }
         void Set(int x1s, int y1s, int x2s, int y2s) {
             x1 = x1s;
