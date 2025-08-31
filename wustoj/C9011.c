@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include <math.h>
+// #include <math.h>
 
 struct fraction
 {
@@ -36,7 +36,8 @@ long long gcd(long long x,long long y)
 
 void app(struct fraction *p)
 {
-    long long x = abs(gcd(p -> numerator,p -> denominator));
+    // long long x = abs(gcd(p -> numerator,p -> denominator));
+    long long x;
     p -> numerator /= x;
     p -> denominator /= x;
 }
