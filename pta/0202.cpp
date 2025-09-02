@@ -15,5 +15,5 @@ int main() {
     } catch(std::exception& e) {
         std::cout << a << '/' << b << e.what() << std::endl;
     }
-     
+    return 0;
 }
