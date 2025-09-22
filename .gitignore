@@ -1,7 +1,10 @@
+*.txt
 *.
 *.exe
 *.json
 
+.io/
+.compiled/
 .output_win/
 .output_linux/
 .vscode/
