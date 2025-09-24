@@ -77,7 +77,8 @@ int binary(int *p,int lenth,int num){
             break;
         }
         else
-            p[(top + bottom) / 2] < num ? (top = (top + bottom) / 2) : (bottom = (top + bottom) / 2);
+            p[(top + bottom) / 2] < num ? (top = (top + bottom) / 2) 
+            : (bottom = (top + bottom) / 2);
 
     }
     return state;
