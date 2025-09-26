@@ -17,7 +17,6 @@ int main(void)
     List list;
     ElemSet min_value, max_value;
     int i;
-
     list = (List)malloc(sizeof(struct ListNode));
     scanf("%d", &list->last);
     for (i=0; i<=list->last; i++){
@@ -34,5 +33,14 @@ int main(void)
 }
 
 List Delete( List list, ElemSet min_value, ElemSet max_value ) {
-    Position p = list->last;
+    Position i = list->last;
+    for( ; i >= 0; --i) {
+        if(list->data[i] > min_value && list->data[i] < max_value) {
+            for(Position j = i + 1; j <= list->last; ++j) {
+                list->data[j-1] = list->data[j];
+            }
+            --(list->last);
+        }
+    }
+    return list;
 }
