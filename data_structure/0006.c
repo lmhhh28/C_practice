@@ -45,7 +45,21 @@ void PrintList( List list )
     }
 }
 
-void K_Reverse( List list, int k );
+void K_Reverse( List list, int k ) {
+    Position p = list->head;
+    Position* vec = (Position*)malloc(k*sizeof(Position));
+    for(int i = 0; i < k; ++i) {
+        p = p->next;
+        vec[i] = p;
+    }
+    list->head->next = p;
+    Position temp = p->next;
+    for(int i = 0; i < k - 1; ++i) {
+        p->next = vec[k-2-i];
+        p = p->next;
+    }
+    p->next = temp;
+}
 
 int main(void)
 {
@@ -59,4 +73,4 @@ int main(void)
 
     return 0;
 }
-/* 你的代码将被嵌在这里 */
+
