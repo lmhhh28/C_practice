@@ -6,13 +6,12 @@ struct NodeList {
     Element data;
     struct NodeList* next;
 };
-typedef struct NodeList NodeList;
-typedef NodeList *Position; 
-typedef Position Node;
+typedef struct NodeList *Node;
+typedef Node Position;
 typedef struct HeadList {
     int len;
     Node head;
-}*List;
+} *List;
 
 List InitList() {
     List list = (List)malloc(sizeof(struct HeadList));
@@ -45,13 +44,19 @@ void PrintList(List list) {
 }
 
 int main() {
-    int n;
+    int n, pos;
     scanf("%d", &n);
     List list = InitList();
     WriteList(list, n);
-    printf("%d\n", list->len);
-    return 0;
+    scanf("%d", &pos);
+    if(pos > 0 && pos <= n) {
+        Position p = list->head;
+        for(int i = 0; i < pos; ++i) {
+            p = p->next;
+        }
+        printf("%d\n", p->data);
+    } else {
+        printf("-1\n");
+    }
+
 }
-
-
-

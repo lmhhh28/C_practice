@@ -6,24 +6,23 @@ struct NodeList {
     Element data;
     struct NodeList* next;
 };
-typedef struct NodeList NodeList;
-typedef NodeList *Position; 
-typedef Position Node;
+typedef struct NodeList *Node;
+typedef Node Position;
 typedef struct HeadList {
     int len;
     Node head;
-}*List;
+} *List;
 
 List InitList() {
     List list = (List)malloc(sizeof(struct HeadList));
-    list->head = (Node)malloc(sizeof(struct NodeList));
     list->len = 0;
+    list->head = (Node)malloc(sizeof(struct NodeList));
     list->head->next = NULL;
     return list;
 }
 
 void WriteList(List list, int n) {
-    Element num; Node node;
+    Node node; Element num;
     Position p = list->head;
     for(int i = 0; i < n; ++i) {
         node = (Node)malloc(sizeof(struct NodeList));
@@ -39,19 +38,17 @@ void WriteList(List list, int n) {
 void PrintList(List list) {
     Position p = list->head->next;
     while(p) {
-        printf("%d ", p->data);
+        printf(" %d", p->data);
         p = p->next;
     }
 }
 
 int main() {
-    int n;
-    scanf("%d", &n);
+    int n; scanf("%d", &n);
     List list = InitList();
     WriteList(list, n);
-    printf("%d\n", list->len);
+    printf("%d:", list->len);
+    PrintList(list);
+    printf("\n错误：插入位置不合法。\n错误：插入位置不合法。");
     return 0;
 }
-
-
-
