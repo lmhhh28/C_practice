@@ -28,9 +28,8 @@ void WriteList(List list, int n) {
         node = (Node)malloc(sizeof(struct NodeList));
         scanf("%d", &num);
         node->data = num;
-        node->next = NULL;
+        node->next = p->next;
         p->next = node;
-        p = p->next;
         ++list->len;
     }
 }
@@ -58,5 +57,5 @@ int main() {
     } else {
         printf("-1\n");
     }
-
+    return 0;
 }

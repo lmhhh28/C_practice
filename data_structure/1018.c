@@ -60,10 +60,11 @@ Node Cut(List list, int n) {
 void PrintList(List list) {
     Position p = list->head->next;
     while(p) {
-        printf("%.2lf %d\n", (double)p->val, p->pow);
+        if(p->val) {
+            printf("%.2lf %d\n", (double)p->val, p->pow);
+        }
         p = p->next;
     }
-    printf("\n");
 }
 
 int main() {

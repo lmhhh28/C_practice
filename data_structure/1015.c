@@ -58,7 +58,7 @@ int main() {
         p = p->next;
     }
     if(flag) {
-        printf("%d\n", cnt);
+        printf("%d", p->data);
     } else {
         printf("%d 未找到。\n", num);
     }
