@@ -1,47 +1,64 @@
 #include <stdio.h>
 #include <string.h>
 
-int trans(char* buffer, int* muti, int* len) {
-    int state = buffer[0] == '-' ? 1 : 0;
-    int begin = *len-1;
-    *len = state ? begin : *len;
-    for(int i = begin, j = 0; i >= state; --i, ++j) {
-        muti[j] = state ? '0'-buffer[i] : buffer[i]-'0';
+typedef struct Stack {
+    int cap, bottom, top;
+    int* arr;
+} *Stack;
+
+Stack InitStack(int cap) {
+    Stack stack = (Stack)malloc(sizeof(struct Stack));
+    stack->cap = cap;
+    stack->bottom = 0; stack->top = 0;
+    stack->arr = (int*)malloc(cap*sizeof(int));
+    return stack;
+}
+
+int pop(Stack stack) {
+    if(stack->top == stack->bottom) {
+        return 0x80000000;
+    } else {
+        int num = stack->arr[stack->top-1];
+        --stack->top;
+        return num;  
     }
-    return state;
+}
+
+int push(Stack stack, int num) {
+    if(stack->top - stack->bottom == stack->cap) {
+        return 0;
+    } else {
+        stack->arr[stack->top] = num;
+        ++stack->top;
+        return 1;
+    }
 }
 
 int main() {
-    char buffer1[1001], buffer2[1001];
-    scanf("%s%s", buffer1, buffer2);
-    int len1 = strlen(buffer1), len2 = strlen(buffer2);
-    int muti1[1001] = {0}, muti2[1001] = {0}, res[2002] = {0};
-    int state1 = trans(buffer1, muti1, &len1);
-    int state2 = trans(buffer2, muti2, &len2);
-    int state = state1^state2;
-    for(int i = 0; i < len2; ++i) {
-        for(int j = 0; j < len1; ++j) {
-            res[i+j] += muti2[i]*muti1[j];
-            res[i+j+1] += res[i+j]/10;
-            res[i+j] %= 10;
+    int n; scanf("%d", &n);
+    Stack stack = InitStack(n);
+    int len = 0;
+    while(1) {
+        int num;
+        scanf("%d", &num);
+        int state = push(stack, num);
+        if(state) {
+            ++len;
+        } else {
+            printf("错误：栈已满。\n");
+            break;
+        }
+        if(len == n) {
+            break;
         }
     }
-    int len = len1 + len2;
-    while(res[len-1] == 0 && len > 0 ) {
-        --len;
-    }
-    if(len > 1000) {
-        printf("错误：位数超限。\n");
-    } else {
-        if(!len) {
-            printf("0");
+    while(1) {
+        int num = pop(stack);
+        if(num != 0x80000000) {
+            printf("%d\n", num);
         } else {
-            if(state) {
-                printf("-");
-            }
-            for(int i = len-1; i >=0; --i) {
-                printf("%d", state ? -res[i] : res[i]);
-            }
+            printf("错误：栈为空。\n-1\n错误：栈为空。\n");
+            break;
         }
     }
     return 0;
